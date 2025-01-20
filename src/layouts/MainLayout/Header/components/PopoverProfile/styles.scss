@@ -1,0 +1,13 @@
+.drawerInformation {
+  .ant-drawer-header {
+    @apply border-none sm:pt-4 sm:px-6 sm:pb-0 s:p-2.5 s:pb-0;
+  }
+
+  .ant-drawer-header-title {
+    @apply flex-row-reverse
+  }
+
+  .ant-drawer-body {
+    @apply sm:p-6 sm:pt-0 s:p-2.5 s:pt-0
+  }
+}

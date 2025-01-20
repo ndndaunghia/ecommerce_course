@@ -1,0 +1,61 @@
+.ant-popover-inner {
+  @apply p-0 bg-gray-100 rounded #{!important}
+}
+
+.ant-popover-arrow-content::before {
+  @apply bg-gray-100
+}
+
+.ant-badge-multiple-words {
+  @apply py-0 px-1
+}
+
+.ant-popover-arrow {
+  @apply hidden #{!important}
+}
+
+.btn-menu {
+  @apply relative inline-flex justify-center items-center w-[25px] h-[25px] mt-[3px]
+    lg:hidden md:inline-flex s:inline-flex;
+}
+
+.icon-line {
+  .line-top,
+  .line-mid, 
+  .line-bottom {
+    @apply absolute w-[100%] h-[3px] rounded-[1px];
+  }
+
+  .icon-line::after {
+    content: '';
+    @apply absolute bg-gray-300 rounded-lg bottom-[2px];
+  }
+
+  .line-top {
+    @apply top-[13px] bg-[#e0e3e9];
+  }
+
+  .line-mid {
+    @apply top-[5px] bg-[#e0e3e9] translate-y-[50%]  ;
+  }
+
+  .line-bottom {
+    @apply bg-[#99a1b7];
+  }
+
+  @apply relative w-[18px] h-[20px] mt-[2px];
+}
+
+.btn-menu:hover {
+  .line-top {
+    @apply bg-blue-200;
+  }
+
+  .line-mid {
+    @apply bg-blue-200;
+  }
+
+  .line-bottom {
+    @apply bg-[#1b84ff];
+  }
+}

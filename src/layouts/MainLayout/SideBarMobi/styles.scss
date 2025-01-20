@@ -1,0 +1,10 @@
+.drawer-side-bar-mobi {
+  .ant-drawer-header {
+    @apply hidden;
+  }
+
+  .ant-drawer-body {
+    @apply pt-0 bg-black-0
+  }
+  @apply lg:hidden md:block sm:block xs:block s:block n:hidden
+}

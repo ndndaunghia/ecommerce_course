@@ -1,0 +1,185 @@
+/* Nav item */
+.navItemWrap {
+  .textWrap {
+    .iconWrap {
+      @apply flex justify-center
+        lg:w-[25px] md:w-[16px] sm:w-[14px] xs:w-[14px] s:w-[14px];
+      svg {
+        g {
+          @apply text-gray-60
+        }
+
+        path:first-child {
+          @apply text-gray-60
+        }
+
+        path:last-child {
+          @apply text-gray-20
+        }
+      }
+    }
+
+    .text {
+      @apply font-bold text-gray-60 ml-[5px] clear-both inline-block overflow-hidden whitespace-nowrap
+        lg:text-[14px] md:text-[16px] sm:text-[12px] xs:text-[12px] s:text-[12px];
+    }
+
+    &:hover {
+      .text {
+        @apply text-gray-100 transition-all duration-200
+      }
+
+      .iconWrap {
+        svg {
+          g {
+            @apply text-gray-100
+          }
+
+          path:first-child {
+            @apply text-gray-100
+          }
+        }
+
+        @apply transition-all duration-200
+      }
+
+    }
+
+    @apply flex justify-start items-center
+  }
+
+  .btnDrop {
+    svg {
+      @apply text-gray-60
+    }
+
+    @apply text-[11px] transition-all duration-300
+  }
+
+  @apply flex justify-between items-center cursor-pointer py-[9px] px-[13px] my-1
+}
+
+.navItemCloseWrap {
+  @apply justify-center
+}
+
+.navItemActiveWrap {
+  .textWrap {
+    .text, g {
+      @apply text-gray-100;
+    }
+
+    g {
+      path:last-child {
+        @apply text-gray-100 #{!important}
+      }
+    }
+
+    .iconWrap {
+      svg {
+        path:first-child {
+          @apply text-gray-100
+        }
+
+        path:last-child {
+          @apply text-gray-20
+        }
+      }
+    }
+  }
+
+  .btnDrop {
+    @apply transition-all duration-300 transform rotate-180
+  }
+
+  @apply bg-black-10 rounded-md
+}
+
+.activeNavItemAndSubMenuWrap {
+  .btnDrop {
+    @apply transition-all duration-300 transform rotate-180
+  }
+}
+
+/* Sub menu */
+.menuSubNav {
+  .menuSubNavItem {
+    &:hover {
+      @apply text-gray-100 transition-all duration-200
+    }
+
+    .contentSubNavItemWrap {
+      .textWrap {
+        .text {
+          @apply ml-2.5
+        }
+
+        .iconWrap {
+          .dotted {
+            @apply w-1 h-1 bg-gray-60 rounded-full
+          }
+
+          @apply flex items-center
+        }
+
+        @apply flex justify-start clear-both inline-block overflow-hidden whitespace-nowrap
+      }
+
+      &:hover {
+        .textWrap {
+          .iconWrap {
+            .dotted {
+              @apply bg-gray-100
+            }
+          }
+        }
+      }
+
+      @apply flex justify-between items-center cursor-pointer p-[9px] pl-[25px] mx-3
+    }
+
+    .menuSubFoSubItemActive {
+      .textWrap {
+        .iconWrap {
+          .dotted {
+            @apply bg-gray-100
+          }
+        }
+
+        @apply text-gray-100 transition-all duration-500
+      }
+
+      @apply bg-black-10 rounded-md
+    }
+
+    @apply w-full bg-black-0 text-gray-60 transition-all duration-300
+  }
+
+  @apply max-h-0 p-0 overflow-hidden transition-all duration-200
+}
+
+.menuSubForSubItemActive {
+
+  &::-webkit-scrollbar {
+    @apply w-[5px] transition-all duration-200
+  }
+
+  &::-webkit-scrollbar-track {
+    @apply bg-transparent rounded-md
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @apply bg-transparent rounded-lg transition-all duration-200
+  }
+
+  &:hover::-webkit-scrollbar-thumb:vertical {
+    @apply bg-black-75
+  }
+
+  &::-webkit-scrollbar-thumb:vertical:hover {
+    @apply bg-black-75
+  }
+
+  @apply w-full max-h-[80vh] overflow-y-auto overflow-x-hidden transition-all duration-500
+}
+

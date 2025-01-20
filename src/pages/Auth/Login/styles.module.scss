@@ -1,0 +1,7 @@
+.forgot {
+  span {
+    @apply cursor-pointer md:text-sm s:text-xs
+  }
+
+  @apply text-right mt-2 text-blue-60 mb-6
+}

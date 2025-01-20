@@ -1,0 +1,7 @@
+.icon_profile {
+    @apply absolute right-[-16px] md:w-[30px] md:h-[30px] s:w-7 s:h-7 bg-white shadow rounded-[50%] flex justify-center items-center z-10 cursor-pointer fill-[#99A1B7] hover:fill-blue-60 #{!important}
+}
+
+.avatar_profile {
+    @apply md:w-32 md:h-32 s:w-[100px] s:h-[100px] shadow border-white rounded-[8px] border-[3px] object-cover
+}

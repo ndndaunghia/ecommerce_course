@@ -1,0 +1,78 @@
+.boxMainLayout {
+  .headerBox {
+    @apply bg-gray-100 h-[74px] mb-[-74px]
+  }
+
+  @apply bg-gray-100 lg:block md:block sm:block xs:block s:block n:hidden
+}
+
+.noSupport{
+  .noSupIcon{
+    @apply w-[100%] h-[100%] 
+  }
+
+  .noSupText{
+    @apply text-[#1989ca] text-sm font-semibold font-mono
+  }
+  
+  @apply text-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+    lg:hidden md:hidden sm:hidden xs:hidden s:hidden n:block
+}
+
+.mainLayoutWrap {
+  .mainWrap {
+    .mainContentWrap {
+      .content {
+        &::-webkit-scrollbar {
+          @apply w-[0px] sticky top-0 right-0 bottom-0 transition-all duration-200
+        }
+
+        &::-webkit-scrollbar-track {
+          @apply bg-transparent rounded-md
+        }
+
+        &::-webkit-scrollbar-thumb {
+          @apply bg-transparent rounded-lg transition-all duration-200
+        }
+
+        &:hover::-webkit-scrollbar-thumb:vertical {
+          @apply bg-black-75
+        }
+
+        &::-webkit-scrollbar-thumb:vertical:hover {
+          @apply bg-black-75
+        }
+
+        @apply max-h-[calc(100vh_-_74px)] overflow-hidden lg:py-[30px] md:py-[26px] xs:py-2.5 s:py-2.5 relative md:px-[20px] lg:p-[30px] mx-auto w-full 2xl:max-w-[1320px]
+      }
+
+      @apply h-screen md:pt-[74px] s:pt-[58px] bg-gray-115 flex flex-col
+    }
+
+    @apply w-[calc(100%_-_265px)] ml-[265px] h-full transition-all duration-500 relative
+  }
+
+  .mainWrapWithConditionSideBarClose {
+    @apply w-[calc(100%_-_64px)] ml-[64px]
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .mainWrap {
+      @apply w-[calc(100%_-_64px)] ml-[64px] h-full transition-all duration-500
+    }
+    .mainWrapWithConditionSideBarClose {
+      @apply w-[calc(100%_-_64px)] ml-[64px]
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .mainWrap {
+      @apply w-[100%] ml-[0] h-full transition-all duration-500
+    }
+    .mainWrapWithConditionSideBarClose {
+      @apply w-[100%] ml-[0]
+    }
+  }
+
+  @apply max-w-[1920px] m-auto
+}

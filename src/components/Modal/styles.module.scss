@@ -1,0 +1,9 @@
+@import "@/assets/scss/variables";
+
+.headerWrap {
+  @apply border-b text-black-title border-gray-95 font-semibold lg:text-xl md:text-xl xs:text-sm s:p-5 s:text-sm lg:p-6 xs:p-5
+}
+
+.mainWrap {
+  @apply lg:p-8 md:p-8 xs:p-5 s:p-5
+}

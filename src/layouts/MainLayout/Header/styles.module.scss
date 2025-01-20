@@ -1,0 +1,87 @@
+.headerWrap {
+  .headerLeftWrap {
+    .itemHeaderLeft {
+      .iconWrap {
+        @apply text-[22px] text-gray-50 transition-all duration-300
+      }
+
+      @apply mr-2.5 p-2.5 cursor-pointer
+    }
+
+    .logoHeader {
+      .btnMenu {
+        @apply w-5 h-5 lg:hidden md:block sm:block xs:block s:block
+      }
+      .imgWrap {
+        img {
+          @apply object-cover cursor-pointer w-[50px] h-[50px];
+        }
+        @apply lg:hidden md:block sm:block xs:block s:block
+      }
+      @apply flex justify-center items-center h-[44px] transition-all duration-500 overflow-hidden relative
+    }
+    @apply flex items-center
+  }
+
+  .headerRightWrap {
+    .itemHeaderRight {
+      &:hover {
+        .iconWrap {
+          @apply text-blue-65
+        }
+      }
+
+      .iconWrap {
+        @apply flex items-center text-base transition-all duration-300 text-black-20
+      }
+
+      .infoWrap {
+        .avatarWrap {
+          img {
+            @apply w-full h-full object-cover
+          }
+
+          @apply md:w-10 md:h-10 s:w-9 s:h-9 rounded-lg overflow-hidden md:mr-1.5 flex items-center justify-center bg-gray-90
+        }
+
+        .info {
+          span {
+            @apply leading-none block
+          }
+
+          .name {
+            @apply font-bold flex items-center
+          }
+
+          @apply not-italic font-normal text-sm text-black-20 mr-1
+        }
+
+        .btnWrap {
+          @apply flex items-center mr-0.5
+        }
+
+        @apply flex justify-start items-center
+      }
+
+      @apply md:p-2.5 my-0 md:mx-[5px] cursor-pointer flex items-center
+    }
+
+    .itemChangeTheme {
+      @apply py-2.5 px-2
+    }
+
+    @apply flex items-center
+  }
+
+  @apply w-full md:h-[74px] s:h-[58px] bg-gray-100 flex items-center justify-between py-2.5 px-[15px] shadow-[0_10px_30px_0_rgba(82,63,105,0.05)] absolute z-10
+}
+
+@media only screen and (max-width: 375px) {
+  .headerWrap {
+    .headerLeftWrap {
+      .btnToggleSideBar {
+        @apply block
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+.authLoginWrap {
+  .contentWrap {
+    .contentContainer {
+      .companyMobile {
+        @apply hidden;
+      }
+
+      .formWrap {
+        .content {
+          .header {
+            @apply font-semibold md:text-2xl s:text-lg text-center
+          }
+
+          .headerDetail {
+            @apply text-center text-gray-75 md:mb-10 s:mb-8 mt-3 md:text-sm s:text-xs
+          }
+
+          @apply w-full md:max-w-[400px] md:px-[30px]
+        }
+
+        @apply w-full flex justify-center justify-items-center items-center h-screen
+      }
+    }
+
+    @apply w-1/2;
+
+  }
+
+  .viewWrap {
+    .logoWrap {
+      .company {
+        img {
+          @apply w-full xl:max-w-[350px] md:max-w-[300px]  md:px-[20px]
+        }
+
+        @apply flex justify-center
+      }
+
+      .decorWrap {
+        img {
+          @apply w-full md:max-w-[400px] md:px-[20px] 
+        }
+
+        @apply flex justify-center
+      }
+    }
+
+    @apply flex justify-center justify-items-center items-center w-6/12 h-screen bg-[url('https://preview.keenthemes.com/metronic8/demo1/assets/media/misc/auth-bg.png')] bg-cover
+  }
+
+  @apply s:flex n:hidden
+}
+
+.noSupport{
+  .noSupIcon{
+    @apply w-[100%] h-[100%] 
+  }
+
+  .noSupText{
+    @apply text-[#1989ca] text-sm font-semibold font-mono
+  }
+  
+  @apply text-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+    lg:hidden md:hidden sm:hidden xs:hidden s:hidden n:block
+}
+
+@media only screen and (max-width: 767px) {
+  .authLoginWrap {
+    .contentWrap {
+      .contentContainer {
+        .companyMobile {
+          @apply flex justify-center;
+
+          img {
+            @apply sm:max-w-[300px] s:max-w-[250px];
+          }
+        }
+
+        .formWrap {
+          .content {
+            @apply w-full px-6 py-6;
+          }
+
+          @apply rounded-xl bg-[#fff] s:max-w-[350px] h-[50%];
+        }
+
+        @apply flex flex-col items-center absolute w-full px-4 top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2;
+      }
+
+      @apply absolute bg-transparent h-full w-full;
+    }
+
+    .viewWrap {
+      .logoWrap {
+        .decorWrap {
+          @apply hidden #{!important};
+        }
+
+        @apply hidden #{!important};
+      }
+
+      @apply w-full block;
+    }
+
+    @apply text-sm;
+  }
+}

@@ -1,0 +1,106 @@
+.sideBarWrap {
+  .navbarWrap {
+    .menuNav {
+      .menuNavItem {
+        &:hover {
+          g {
+            @apply fill-white;
+          }
+
+          span {
+            @apply text-white;
+          }
+        }
+
+        @apply w-full bg-black-0 text-gray-50 transition-all duration-300 overflow-hidden;
+      }
+
+      @apply list-none m-0 p-0 font-normal text-sm transition-all duration-500;
+    }
+  }
+  .navbarWrap:hover {
+    @apply overflow-y-auto;
+  }
+  @apply mt-4 ml-[-12px]
+
+}
+
+.navItemWrap {
+  .textWrap {
+    .iconWrap {
+      @apply flex justify-center mr-1 md:w-[16px] sm:w-[16px] xs:w-[16px] s:w-[16px];
+      svg {
+        g {
+          @apply text-gray-60
+        }
+
+        path:first-child {
+          @apply text-gray-60
+        }
+
+        path:last-child {
+          @apply text-gray-20
+        }
+      }
+    }
+
+    .text {
+      @apply font-bold text-gray-60 ml-[5px] clear-both inline-block overflow-hidden whitespace-nowrap
+      lg:text-[14px] md:text-[14px] sm:text-[12px] xs:text-[12px] s:text-[12px];
+    }
+
+    &:hover {
+      .text {
+        @apply text-gray-100 transition-all duration-200
+      }
+
+      .iconWrap {
+        svg {
+          g {
+            @apply text-gray-100
+          }
+
+          path:first-child {
+            @apply text-gray-100
+          }
+        }
+
+        @apply transition-all duration-200
+      }
+
+    }
+
+    @apply flex justify-start items-center
+  }
+
+  @apply flex justify-between items-center cursor-pointer py-[9px] px-[13px] my-1
+}
+
+.navItemActiveWrap {
+  .textWrap {
+    .text, g {
+      @apply text-gray-100;
+    }
+
+    g {
+      path:last-child {
+        @apply text-gray-100 #{!important}
+      }
+    }
+
+    .iconWrap {
+      svg {
+        path:first-child {
+          @apply text-gray-100
+        }
+
+        path:last-child {
+          @apply text-gray-20
+        }
+      }
+    }
+  }
+
+  @apply bg-black-10 rounded-md
+}
+
