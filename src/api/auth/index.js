@@ -17,7 +17,7 @@ import {
 export const login = (data) => async (dispatch, getState) => {
   return callApi({
     method: 'post',
-    apiPath: 'auth/login',
+    apiPath: '/login',
     actionTypes: [
       startRequestLogin,
       startRequestLoginSuccess,

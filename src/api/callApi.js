@@ -41,8 +41,10 @@ export default async function callApi(
     params: method === 'get' ? variables : ''
   })
     .then(function (response) {
-      dispatch(successType(response.data))
-      return response.data;
+      console.log('response', response);
+      
+      dispatch(successType(response))
+      return response;
     })
     .catch((error) => {
       let response = error.response ? error.response : error;

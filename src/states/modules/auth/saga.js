@@ -1,4 +1,4 @@
-import {all, fork, takeLatest, put} from "redux-saga/effects";
+import {all, fork, takeLatest, put, call} from "redux-saga/effects";
 import {
   setErrorForgotPassword,
   setErrorLogin,
@@ -21,12 +21,15 @@ function* loadRouteData() {
 }
 
 function* handleActions() {
+  console.log(111111111);
+  
   yield takeLatest(startRequestLoginSuccess, function* (action) {
-    let token = action.payload.data.access_token;
+    let token = action.payload.data.token;
     setAuthToken(token);
-    yield put(goToPage({
-      path: "/"
-    }))
+    yield handleNotification('success', 'Đăng nhập thành công.');
+    // yield put(goToPage({
+    //   path: "/"
+    // }))
   });
   
   yield takeLatest(startRequestLoginFail, function* (action) {
