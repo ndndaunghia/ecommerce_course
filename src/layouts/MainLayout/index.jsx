@@ -52,7 +52,7 @@ function MainLayout(props) {
                 isShowSideBarMobi={isShowSideBarMobi}
               />
           } */}
-          <div className={`${styles.mainWrap} ${!isShowSideBar ? styles.mainWrapWithConditionSideBarClose : ''}`}>
+          <div className={`${!isShowSideBar ? styles.mainWrapWithConditionSideBarClose : ''}`}>
             <Header
               isShowSideBar={isShowSideBar}
             />

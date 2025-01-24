@@ -8,7 +8,7 @@ export default {
   theme: {
     screens: {
       'n': '0px',
-      's':'320px',
+      's': '320px',
       'xs': '360px',
       'sm': '576px',
       'md': '768px',
@@ -63,7 +63,7 @@ export default {
           25: "#196619",
         },
         gray: {
-          120:"#F9F9F9",
+          120: "#F9F9F9",
           115: "#fcfcfc",
           110: "#f1f1f4d6",
           100: "#ffffff",
@@ -118,6 +118,16 @@ export default {
           35: "#b37400",
           30: "#996300",
           25: "#805300",
+        },
+        primary: {
+          DEFAULT: '#009e6a',
+          light: '#33b187',
+          dark: '#006e4a',
+        },
+        secondary: {
+          DEFAULT: '#00799c',
+          light: '#008498',
+          dark: '#006E9A',
         },
       },
       keyframes: {
