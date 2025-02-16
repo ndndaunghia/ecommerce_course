@@ -7,6 +7,7 @@ import ResetPassword from "@/pages/Auth/ResetPassword";
 import Home from "@/pages/Home";
 import MyCourses from '@/pages/MyCourses/index.jsx';
 import CourseDetailPage from '@/pages/CourseDetail/index.jsx';
+import CoursePlayerPage from '@/pages/CoursePlayer/index.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,7 +51,14 @@ const router = createBrowserRouter([
     loader: ({request, params}) => rootLoader(
       {request, params}, false, 'LOAD_HOME_PAGE'
     )
-  }
+  },
+  {
+    path: '/course-player',
+    element: <CoursePlayerPage/>,
+    loader: ({request, params}) => rootLoader(
+      {request, params}, false, 'LOAD_HOME_PAGE'
+    )
+  },
 ]);
 
 export default router;
