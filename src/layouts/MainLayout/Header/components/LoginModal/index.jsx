@@ -1,4 +1,6 @@
-import {login} from '@/api/auth';
+import {login, userDetail} from '@/api/auth';
+import { setIsLoginModal, setIsSignUpModal } from '@/states/modules/home';
+import { setAuthToken, setUserId } from '@/utils/localStorage';
 import React from 'react';
 import {useForm} from 'react-hook-form';
 import {useDispatch} from 'react-redux';
@@ -12,8 +14,24 @@ function LoginModal() {
 
   const dispatch = useDispatch();
 
-  const onLoginSubmit = handleSubmitLogin((data) => {
-    dispatch(login(data));
+  const onLoginSubmit = handleSubmitLogin(async (data) => { // Thêm async
+    try {
+      // Gọi API đăng nhập
+      const response = await dispatch(login(data)).unwrap(); // Sử dụng unwrap để lấy kết quả từ Redux Toolkit
+      const { token, user } = response.data.data;
+
+      // Lưu token và userId vào localStorage
+      setAuthToken(token);
+      setUserId(user.id);
+
+      // Lấy thông tin người dùng và cập nhật Redux store
+      await dispatch(userDetail(user.id)); // Gọi API để lấy thông tin chi tiết
+
+      // Đóng modal đăng nhập
+      dispatch(setIsLoginModal(false));
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   });
 
   return (
@@ -81,7 +99,10 @@ function LoginModal() {
       <p className="text-sm font-light text-gray-900 dark:text-gray-900">
         Bạn chưa có tài khoản?{' '}
         <a
-          // onClick={openSignUpModal}
+        onClick={() => {
+          dispatch(setIsLoginModal(false));
+          dispatch(setIsSignUpModal(true)); // Chuyển sang modal đăng ký
+        }}
           href="#"
           className="font-medium text-primary-600 hover:underline dark:text-primary-500"
         >

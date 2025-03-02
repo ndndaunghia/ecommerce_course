@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBrowserRouter} from 'react-router-dom';
+import {createBrowserRouter, Outlet} from 'react-router-dom';
 import {rootLoader} from "./rootLoader.js";
 import Login from "@/pages/Auth/Login";
 import ForgotPassword from "@/pages/Auth/ForgotPassword";

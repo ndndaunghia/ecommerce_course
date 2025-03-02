@@ -19,6 +19,11 @@ const authSlice = createSlice({
       confirmPassword: ''
     },
     isLoadingBtnResetPassword: false,
+    errorSignUp: {
+      email: '',
+      password: '',
+    },
+    isLoadingBtnSignUp: false,
   },
   reducers: {
     setErrorLogin: (state, action) => ({
@@ -43,7 +48,7 @@ const authSlice = createSlice({
     startRequestGetMeSuccess: (state, action) => ({
       ...state,
       isAuthSuccess: true,
-      authUser: action.payload.data
+      authUser: action.payload.data.data
     }),
     startRequestGetMeFail: (state) => ({
       ...state,
@@ -86,11 +91,28 @@ const authSlice = createSlice({
       ...state,
       isAuthSuccess: action.payload
     }),
+    setErrorSignUp: (state, action) => ({
+      ...state,
+      errorSignUp: action.payload
+    }),
+    startRequestSignUp: (state) => ({
+      ...state,
+      isLoadingBtnSignUp: true
+    }),
+    startRequestSignUpSuccess: (state) => ({
+      ...state,
+      isLoadingBtnSignUp: false
+    }),
+    startRequestSignUpFail: (state) => ({
+      ...state,
+      isLoadingBtnSignUp: false
+    }),
   }
 })
 
 export const {
   setErrorLogin,
+  setErrorSignUp,
   setErrorForgotPassword,
   setErrorResetPassword,
   setAuthSuccess,
@@ -106,6 +128,9 @@ export const {
   startRequestResetPassword,
   startRequestResetPasswordSuccess,
   startRequestResetPasswordFail,
+  startRequestSignUp,
+  startRequestSignUpSuccess,
+  startRequestSignUpFail,
 } = authSlice.actions
 
 export default authSlice.reducer;

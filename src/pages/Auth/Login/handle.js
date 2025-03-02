@@ -4,9 +4,10 @@ import _ from "lodash";
 import {useDispatch, useSelector} from "react-redux";
 import {setErrorLogin} from "@/states/modules/auth/index.js";
 import {VALIDATE_EMAIL_REGEX} from "@/utils/helper.js";
-import {login} from "@/api/auth/index.js";
+import {login, userDetail} from "@/api/auth/index.js";
 import Joi from "joi";
 import {validate} from "@/utils/validates/index.js";
+import { getUserId } from "@/utils/localStorage";
 
 const loginValidateSchema = Joi.object({
   email: Joi.string()

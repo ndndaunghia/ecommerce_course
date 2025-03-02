@@ -2,8 +2,8 @@ import {redirect} from "react-router-dom";
 import store from "@/states/configureStore";
 import {initialSaga} from "@/states/modules/routing/index.js";
 import {setLocation} from "@/states/modules/app/index.js";
-import {getMe} from "@/api/auth/index.js";
-import {getAuthToken} from "@/utils/localStorage";
+import {getMe, userDetail} from "@/api/auth/index.js";
+import {getAuthToken, getUserId} from "@/utils/localStorage";
 import {convertQueryStringToObject, hasPermission} from "@/utils/helper";
 
 export const rootLoader = async ({request, params}, requiredAuth, saga = null, permissions = []) => {
@@ -14,7 +14,7 @@ export const rootLoader = async ({request, params}, requiredAuth, saga = null, p
   const secondCondition = url.pathname === '/profile';
   
   if (firstCondition || secondCondition) {
-    await store.dispatch(getMe());
+    await store.dispatch(userDetail(getUserId()));
     auth = store.getState().auth;
   }
   

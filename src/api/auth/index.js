@@ -12,6 +12,9 @@ import {
   startRequestResetPassword,
   startRequestResetPasswordSuccess,
   startRequestResetPasswordFail,
+  startRequestSignUp,
+  startRequestSignUpSuccess,
+  startRequestSignUpFail,
 } from "@/states/modules/auth";
 
 export const login = (data) => async (dispatch, getState) => {
@@ -21,7 +24,10 @@ export const login = (data) => async (dispatch, getState) => {
     actionTypes: [
       startRequestLogin,
       startRequestLoginSuccess,
-      startRequestLoginFail
+      startRequestLoginFail,
+      // startRequestGetMe,
+      // startRequestGetMeSuccess,
+      // startRequestGetMeFail
     ],
     variables: {
       email: data.email,
@@ -83,3 +89,35 @@ export const resetPassword = (data) => async (dispatch, getState) => {
   })
 }
 
+export const userDetail = (id) => async (dispatch, getState) => {
+  return callApi({
+    method: 'get',
+    apiPath: `user-detail/${id}`,
+    actionTypes: [
+      startRequestGetMe,
+      startRequestGetMeSuccess,
+      startRequestGetMeFail
+    ],
+    variables: {},
+    dispatch,
+    getState
+  })
+}
+
+export const signUp = (data) => async (dispatch, getState) => {
+  return callApi({
+    method: 'post',
+    apiPath: 'register',
+    actionTypes: [
+     startRequestSignUp,
+     startRequestSignUpSuccess,
+     startRequestSignUpFail
+    ],
+    variables: {
+      email: data.email,
+      password: data.password,
+    },
+    dispatch,
+    getState
+  })
+}

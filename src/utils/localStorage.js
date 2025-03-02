@@ -19,3 +19,15 @@ export const hasAuthToken = () => {
 export const removeItem = (name) => {
   return localStorage.removeItem(name);
 }
+
+export const setUserId = (userId) => {
+  return localStorage.setItem('userId', userId);
+}
+
+export const getUserId = () => {
+  return localStorage.getItem('userId');
+}
+
+export const removeUserId = () => {
+  return localStorage.removeItem('userId');
+}

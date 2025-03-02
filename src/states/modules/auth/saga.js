@@ -5,7 +5,9 @@ import {
   setErrorResetPassword,
   startRequestForgotPasswordFail,
   startRequestForgotPasswordSuccess,
+  startRequestGetMe,
   startRequestGetMeFail,
+  startRequestGetMeSuccess,
   startRequestLoginFail,
   startRequestLoginSuccess,
   startRequestResetPasswordFail,
@@ -21,12 +23,11 @@ function* loadRouteData() {
 }
 
 function* handleActions() {
-  console.log(111111111);
-  
   yield takeLatest(startRequestLoginSuccess, function* (action) {
     let token = action.payload.data.token;
     setAuthToken(token);
     yield handleNotification('success', 'Đăng nhập thành công.');
+
     // yield put(goToPage({
     //   path: "/"
     // }))
@@ -34,12 +35,16 @@ function* handleActions() {
   
   yield takeLatest(startRequestLoginFail, function* (action) {
     let statusError = action.payload.status
+    
     if (statusError === 400) {
       let errors = action.payload.data.detail
+      console.log(action.payload.data);
+      
       yield put(setErrorLogin({
         email: _.get(errors, 'email', ''),
         password: _.get(errors, 'password', '')
       }));
+      handleNotification('error', action.payload.data);
     } else if (statusError === 401) {
       handleNotification('error', action.payload.data.message);
     } else {

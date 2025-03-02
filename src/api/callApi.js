@@ -25,11 +25,11 @@ export default async function callApi(
   }
   
   const baseUrlApi = import.meta.env.VITE_API_URL;
-  // const token = getAuthToken();
-  // const generalToken = tokenOther ? tokenOther : ""
+  const token = getAuthToken();
+  const generalToken = tokenOther ? tokenOther : ""
   const header = {
     "Content-Type": "application/json",
-    // "Authorization": token ? `Bearer ${token}` : generalToken
+    "Authorization": token ? `Bearer ${token}` : generalToken
   };
   dispatch(requestType())
   return axios({
@@ -41,8 +41,6 @@ export default async function callApi(
     params: method === 'get' ? variables : ''
   })
     .then(function (response) {
-      console.log('response', response);
-      
       dispatch(successType(response))
       return response;
     })
@@ -54,7 +52,7 @@ export default async function callApi(
           dispatch(goToPage({path: '/forgot-password'}));
         } else {
           removeAuthToken();
-          dispatch(goToPage({path: '/login'}));
+          // dispatch(goToPage({path: '/login'}));
           dispatch(setAuthSuccess(false));
         }
       } else if (response.status === 403) {

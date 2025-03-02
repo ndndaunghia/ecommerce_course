@@ -1,7 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
-import {removeAuthToken} from "@/utils/localStorage.js";
+import {removeAuthToken, removeUserId} from "@/utils/localStorage.js";
 import {startRequestGetMeFail} from "@/states/modules/auth/index.js";
 import {getMe} from "@/api/auth/index.js";
 import {
@@ -20,8 +20,9 @@ export default function Handle() {
   
   const handleConfirmLogout = () => {
     removeAuthToken();
+    removeUserId();
     dispatch(startRequestGetMeFail())
-    navigate('/login');
+    // navigate('/login');
   }
   const handleResetError = (type) => {
     dispatch(setErrorInformation({
