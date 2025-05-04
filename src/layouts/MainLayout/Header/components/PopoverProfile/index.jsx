@@ -75,7 +75,7 @@ function PopoverProfile() {
         </ul>
       </div>
       
-      <Drawer
+      {/* <Drawer
         title={<TitleInformation/>}
         placement={'right'}
         className={'drawerInformation'}
@@ -87,7 +87,7 @@ function PopoverProfile() {
         closeIcon={<div className={'absolute top-[30px]'}><InlineSVG src={Close}/></div>}
       >
         <Tabs onChange={() => handleClearError()} defaultActiveKey="1" items={items}/>
-      </Drawer>
+      </Drawer> */}
     </div>
   );
 }

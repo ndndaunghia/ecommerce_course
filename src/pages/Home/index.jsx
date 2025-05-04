@@ -8,8 +8,8 @@ function Home() {
   return (
     <MainLayout>
       <Banner />
-      <CourseList title='Khóa học miễn phí'/>
-      <CourseList title='Khóa học Pro'/>
+      <CourseList title="Khóa học miễn phí" type="free" />
+      <CourseList title="Khóa học Pro" type="pro" />
       <Footer />
     </MainLayout>
   );

@@ -16,18 +16,14 @@ function LoginModal() {
 
   const onLoginSubmit = handleSubmitLogin(async (data) => { // Thêm async
     try {
-      // Gọi API đăng nhập
-      const response = await dispatch(login(data)).unwrap(); // Sử dụng unwrap để lấy kết quả từ Redux Toolkit
+      const response = await dispatch(login(data))
       const { token, user } = response.data.data;
 
-      // Lưu token và userId vào localStorage
       setAuthToken(token);
       setUserId(user.id);
 
-      // Lấy thông tin người dùng và cập nhật Redux store
-      await dispatch(userDetail(user.id)); // Gọi API để lấy thông tin chi tiết
+      await dispatch(userDetail(user.id)); 
 
-      // Đóng modal đăng nhập
       dispatch(setIsLoginModal(false));
     } catch (error) {
       console.error('Login failed:', error);

@@ -3,7 +3,7 @@ import {
   put,
   takeLatest
 } from "redux-saga/effects";
-import { setErrorLogin, startRequestGetMe, startRequestGetMeSuccess, startRequestLoginFail, startRequestLoginSuccess } from "../auth";
+import { setErrorLogin, startRequestGetMe, startRequestGetMeSuccess, startRequestLoginFail, startRequestLoginSuccess, startRequestSignUpFail, startRequestSignUpSuccess } from "../auth";
 import { setAuthToken, setUserId } from "@/utils/localStorage";
 import { handleNotification } from "@/utils/helper";
 import { setIsLoginModal } from ".";
@@ -19,7 +19,7 @@ function* handleActions() {
     let userId = action.payload.data.data.user.id;
     setAuthToken(token);
     setUserId(userId);
-    
+
     yield put(startRequestGetMe());
     yield handleNotification('success', 'Đăng nhập thành công.');
     yield put(setIsLoginModal(false))
@@ -41,6 +41,17 @@ function* handleActions() {
       handleNotification('error', 'Có lỗi xảy ra, vui lòng thử lại sau.');
     }
   });
+
+  yield takeLatest(startRequestSignUpSuccess, function* (action) {
+    yield handleNotification('success', 'Đăng ký thành công.');
+  }
+  );
+
+  yield takeLatest(startRequestSignUpFail, function* (action) {
+    yield handleNotification('error', 'Đăng ký thất bại');
+  }
+  );
+  
 }
 
 export default function* homeSaga() {

@@ -8,6 +8,8 @@ import Home from "@/pages/Home";
 import MyCourses from '@/pages/MyCourses/index.jsx';
 import CourseDetailPage from '@/pages/CourseDetail/index.jsx';
 import CoursePlayerPage from '@/pages/CoursePlayer/index.jsx';
+import Kone from '@/pages/Kone/index.jsx';
+import PaymentResultPage from '@/pages/PaymentResult/index.jsx';
 
 const router = createBrowserRouter([
   {
@@ -39,10 +41,10 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/course-detail',
+    path: '/course-detail/:id',
     element: <CourseDetailPage/>,
     loader: ({request, params}) => rootLoader(
-      {request, params}, false, 'LOAD_HOME_PAGE'
+      {request, params}, false, 'LOAD_COURSES_PAGE'
     )
   },
   {
@@ -53,12 +55,26 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: '/course-player',
+    path: '/course-player/:courseId',
     element: <CoursePlayerPage/>,
     loader: ({request, params}) => rootLoader(
       {request, params}, false, 'LOAD_HOME_PAGE'
     )
   },
+  {
+    path: '/kone',
+    element: <Kone/>
+  },
+  {
+    path: '/payment-result',
+    element: <PaymentResultPage/>,
+    loader: ({request, params}) => rootLoader(
+      {request, params}, false, 'LOAD_COURSES_PAGE'
+    )
+  }
 ]);
 
 export default router;
+
+// client_id: 35030b5a-7152-41df-a84c-13e00ea3aa85
+// secret_key: 2ebc26b17920462930afa2a31baf5a0fff109bca02941a6889807155e98aa42e

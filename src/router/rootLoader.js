@@ -2,9 +2,10 @@ import {redirect} from "react-router-dom";
 import store from "@/states/configureStore";
 import {initialSaga} from "@/states/modules/routing/index.js";
 import {setLocation} from "@/states/modules/app/index.js";
-import {getMe, userDetail} from "@/api/auth/index.js";
+import {userDetail} from "@/api/auth/index.js";
 import {getAuthToken, getUserId} from "@/utils/localStorage";
 import {convertQueryStringToObject, hasPermission} from "@/utils/helper";
+import { getMyCourses } from "@/api/courses";
 
 export const rootLoader = async ({request, params}, requiredAuth, saga = null, permissions = []) => {
   const url = new URL(request.url);
@@ -16,6 +17,7 @@ export const rootLoader = async ({request, params}, requiredAuth, saga = null, p
   if (firstCondition || secondCondition) {
     await store.dispatch(userDetail(getUserId()));
     auth = store.getState().auth;
+    await store.dispatch(getMyCourses(auth.authUser.user.id))
   }
   
   // if (requiredAuth) {

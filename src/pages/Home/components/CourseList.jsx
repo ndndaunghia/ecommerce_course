@@ -1,64 +1,44 @@
+import { getCourses } from '@/api/courses';
 import CourseCard from '@/components/CourseCard';
-import React from 'react';
-const courses = [
-  {
-    id: 1,
-    imageUrl: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
-    title: 'Kiến Thức Nền Tảng',
-    subtitle: 'Kiến thức nhập môn{}',
-    courseName: 'Kiến Thức Nhập Môn IT',
-    students: 132581,
-    duration: '3h12p',
-  },
-  {
-    id: 2,
-    imageUrl: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
-    title: 'Lập trình C++',
-    subtitle: 'Từ cơ bản đến nâng cao',
-    courseName: 'Lập trình C++ cơ bản, nâng cao',
-    students: 32507,
-    duration: '10h18p',
-  },
-  {
-    id: 3,
-    imageUrl: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
-    title: 'HTML, CSS',
-    subtitle: 'từ zero đến hero',
-    courseName: 'HTML CSS từ Zero đến Hero',
-    students: 205834,
-    duration: '29h5p',
-  },
-  {
-    id: 4,
-    imageUrl: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
-    title: 'Responsive',
-    subtitle: '@web design',
-    courseName: 'Responsive Web Design',
-    students: 45200,
-    duration: '5h20p',
-  },
-  {
-    id: 5,
-    imageUrl: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
-    title: 'JavaScript',
-    subtitle: '{ Cơ bản }',
-    courseName: 'Học JavaScript Cơ Bản',
-    students: 98662,
-    duration: '15h45p',
-  },
-  {
-    id: 6,
-    imageUrl: 'https://files.fullstack.edu.vn/f8-prod/courses/7.png',
-    title: 'JavaScript',
-    subtitle: '{ Nâng cao }',
-    courseName: 'JavaScript Nâng Cao',
-    students: 24256,
-    duration: '8h32p',
-  },
-];
+import React, { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const CourseList = (props) => {
-  const {title} = props;
+  const { title, type } = props; // Thêm prop type
+
+  const dispatch = useDispatch();
+  const allCourses = useSelector((state) => state.course.courses); // Lấy mảng khóa học từ state
+  const isLoading = useSelector((state) => state.course.isLoading);
+
+  useEffect(() => {
+    console.log('All courses:', allCourses);
+  }, [allCourses]);
+
+  // Gọi API lấy danh sách khóa học khi component mount
+  useEffect(() => {
+    dispatch(getCourses({ page: 1, limit: 10, subject_id: "" }));
+  }, [dispatch]);
+  // // Lọc khóa học dựa trên type
+  const filteredCourses = useMemo(() => {
+    if (!allCourses || allCourses.length === 0) return [];
+    return allCourses.filter((course) => {
+      const price = course.price;
+      console.log('Price:', price);
+      
+      if (type === 'free') {
+        return price === "0.000"; // Khóa học miễn phí
+      } else if (type === 'pro') {
+        return price !== "0.000"; // Khóa học pro
+      }
+      return true; // Nếu không có type, hiển thị tất cả
+    });
+  }, [allCourses, type]);
+
+  // Xử lý khi đang tải
+  if (isLoading) {
+    return <div className="container mx-auto px-4 py-8">Đang tải...</div>;
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-6">
@@ -66,19 +46,26 @@ const CourseList = (props) => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {courses.map((course) => (
-          <CourseCard
-            key={course.id}
-            imageUrl={course.imageUrl}
-            title={course.title}
-            subtitle={course.subtitle}
-            courseName={course.courseName}
-            students={course.students}
-            duration={course.duration}
-          />
-        ))}
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((course) => (
+              <CourseCard
+                key={course.id}
+                id={course.id}
+                imageUrl={course.thumbnail_url}
+                title={course.name}
+                subtitle={course.subtitle || 'Không có phụ đề'} // Thêm fallback nếu subtitle không có
+                courseName={course.name}
+                students={course.total_purchases} 
+                price={course.price}
+                duration={course.duration ? `${course.duration} giờ` : 'Chưa xác định'}
+              />
+            ))
+          ) : (
+            <p>Không có khóa học nào để hiển thị.</p>
+          )}
       </div>
     </div>
   );
 };
+
 export default CourseList;
