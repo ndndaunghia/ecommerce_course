@@ -1,3 +1,4 @@
+// Thêm vào learnCourseSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const learnCourseSlice = createSlice({
@@ -5,8 +6,10 @@ const learnCourseSlice = createSlice({
     initialState: {
         isCheckingLesson: false,
         isAnsweringQuestion: false,
+        isUnlockingModule: false,
         checkedLesson: null,
-        answeredQuestion: null, 
+        answeredQuestion: null,
+        unlockedModule: null,
     },
     reducers: {
         startCheckLesson(state) {
@@ -31,6 +34,17 @@ const learnCourseSlice = createSlice({
             state.isAnsweringQuestion = false;
             state.answeredQuestion = null;
         },
+        startUnlockModule(state) {
+            state.isUnlockingModule = true;
+        },
+        startUnlockModuleSuccess(state, action) {
+            state.isUnlockingModule = false;
+            state.unlockedModule = action.payload;
+        },
+        startUnlockModuleFail(state) {
+            state.isUnlockingModule = false;
+            state.unlockedModule = null;
+        },
     }
 })
 
@@ -40,7 +54,10 @@ export const {
     startCheckLessonFail,
     startAnswerQuestion,
     startAnswerQuestionSuccess,
-    startAnswerQuestionFail
+    startAnswerQuestionFail,
+    startUnlockModule,
+    startUnlockModuleSuccess,
+    startUnlockModuleFail
 } = learnCourseSlice.actions;
 
 export default learnCourseSlice.reducer;
